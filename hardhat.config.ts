@@ -1,9 +1,9 @@
-import './src/plugin';
+import "./src/plugin";
 
-import '@nomicfoundation/hardhat-ethers';
+import "@nomicfoundation/hardhat-ethers";
 
-import type { HardhatUserConfig } from 'hardhat/config';
+import type { HardhatUserConfig } from "hardhat/config";
 
-export default <HardhatUserConfig> {
-  predeploy: {}
+export default <HardhatUserConfig>{
+  predeploy: {},
 };
