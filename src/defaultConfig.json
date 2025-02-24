@@ -1,0 +1,18 @@
+{
+    "0x0000000071727De22E5E9d8BAf0edAc6f37da032": {
+      "name": "entrypoint"
+    },
+    "0xEFC2c1444eBCC4Db75e7613d20C6a62fF67A167C": {
+      "name": "senderCreator"
+    },
+    "0x4e59b44847b379578588920cA78FbF26c0B4956C": {
+        "name": "deployer.arachnid",
+        "abi": [],
+        "bytecode": "0x7fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffe03601600081602082378035828234f58015156039578182fd5b8082525050506014600cf3"
+    },
+    "0x7A0D94F55792C434d74a40883C6ed8545E406D12": {
+        "name": "deployer.micah",
+        "abi": [],
+        "bytecode": "0x60003681823780368234f58015156014578182fd5b80825250506014600cf3"
+    }
+}
