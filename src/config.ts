@@ -24,9 +24,8 @@ export function resolve(input: PredeployUserConfig): PredeployConfig {
   return Object.fromEntries(
     Object.entries(input).map(([address, details]) => [
       address as HexString,
-      details == false
-        ? false
-        : {
+      details
+        ? {
             name: details.name,
             abi: Array.isArray(details.abi)
               ? details.abi
@@ -34,7 +33,8 @@ export function resolve(input: PredeployUserConfig): PredeployConfig {
             bytecode: isHexString(details.bytecode)
               ? details.bytecode
               : `0x${fs.readFileSync(details.bytecode, "hex").replace(/0x/, "")}`,
-          },
+          }
+        : (false as false),
     ]),
   );
 }
