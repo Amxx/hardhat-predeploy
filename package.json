@@ -6,12 +6,11 @@
   "author": "Hadrien Croubois <hadrien.croubois@gmail.com>",
   "repository": "github:amxx/hardhat-predeploy",
   "main": "dist/plugin.js",
+  "types": "dist/plugin.d.ts",
   "files": [
     "/bin",
     "/dist",
-    "/src",
-    "!**/*.test.{js,d.ts}{,.map}",
-    "!**/*.tsbuildinfo"
+    "/src"
   ],
   "scripts": {
     "clean": "rimraf dist",

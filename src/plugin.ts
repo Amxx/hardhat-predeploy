@@ -9,11 +9,9 @@ import {
   TASK_RUN,
   TASK_TEST_SETUP_TEST_ENVIRONMENT,
 } from "hardhat/builtin-tasks/task-names";
-import merge from "lodash.merge";
 
+import { resolveWithDefault } from "./config";
 import { set } from "./types";
-import { resolve } from "./config";
-import defaultConfig from "./defaultConfig.json";
 
 async function checkIfDevelopmentNetwork(
   provider: EIP1193Provider,
@@ -30,7 +28,7 @@ async function checkIfDevelopmentNetwork(
 }
 
 extendConfig((config, { predeploy: userConfig }) => {
-  config.predeploy = resolve(merge(defaultConfig, userConfig));
+  config.predeploy = resolveWithDefault(userConfig);
 });
 
 extendEnvironment((hre) => {
