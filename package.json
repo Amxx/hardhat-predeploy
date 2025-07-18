@@ -18,8 +18,7 @@
     "prepare": "npm run clean && tsc",
     "lint": "prettier --log-level warn --ignore-path .gitignore '**/*.{js,ts}' --check",
     "lint:fix": "prettier --log-level warn --ignore-path .gitignore '**/*.{js,ts}' --write",
-    "test": "ava",
-    "test:watch": "ava --watch"
+    "test": "hardhat test"
   },
   "dependencies": {
     "@types/lodash.merge": "^4.6.9",
@@ -28,9 +27,9 @@
   },
   "devDependencies": {
     "@nomicfoundation/hardhat-ethers": "^3.0.8",
-    "@nomicfoundation/hardhat-network-helpers": "^1.0.12",
+    "@types/chai": "^5.2.2",
     "@types/mocha": "^10.0.10",
-    "ava": "^6.2.0",
+    "chai": "^5.2.1",
     "ethers": "^6.13.5",
     "hardhat": "^2.26.0",
     "mocha": "^11.1.0",
@@ -41,7 +40,6 @@
   },
   "peerDependencies": {
     "@nomicfoundation/hardhat-ethers": "^3.0.8",
-    "@nomicfoundation/hardhat-network-helpers": "^1.0.12",
     "hardhat": "^2.26.0"
   }
 }
