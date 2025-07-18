@@ -1,6 +1,5 @@
 import fs from "fs";
 import path from "path";
-import merge from "lodash.merge";
 
 import { Path, HexString, isHexString } from "./types";
 
@@ -25,15 +24,17 @@ export interface PredeployConfig {
 
 export function resolveWithDefault(userConfig: PredeployUserConfig | undefined): PredeployConfig {
   return Object.fromEntries(
-    Object.entries(merge(defaultConfig, userConfig)).map(([address, details]) => [
+    Object.entries({ ...defaultConfig, ...userConfig }).map(([address, details]) => [
       address as HexString,
       details
         ? {
             name: details.name,
-            abi: Array.isArray(details.abi) ? details.abi : JSON.parse(fs.readFileSync(details.abi, "utf-8")),
+            abi: Array.isArray(details.abi)
+              ? details.abi
+              : (JSON.parse(fs.readFileSync(details.abi, "utf-8")) as any[]),
             bytecode: isHexString(details.bytecode)
               ? details.bytecode
-              : `0x${fs.readFileSync(details.bytecode, "hex").replace(/0x/, "")}`,
+              : (`0x${fs.readFileSync(details.bytecode, "hex").replace(/0x/, "")}` as HexString),
           }
         : (false as false),
     ]),
