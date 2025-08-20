@@ -1,10 +1,8 @@
 import "hardhat/types/config";
-import "hardhat/types/runtime";
+import "hardhat/types/network";
 
 import type { ethers } from "ethers";
-import type { HardhatEthersHelpers } from "@nomicfoundation/hardhat-ethers/types";
-import type { PredeployUserConfig, PredeployConfig } from "./config";
-import type { NestedContainer } from "./types";
+import type { PredeployUserConfig, PredeployConfig, NestedContainer } from "./types.js";
 
 declare module "hardhat/types/config" {
   export interface HardhatUserConfig {
@@ -16,9 +14,8 @@ declare module "hardhat/types/config" {
   }
 }
 
-declare module "hardhat/types/runtime" {
-  export interface HardhatRuntimeEnvironment {
-    ethers: typeof ethers & HardhatEthersHelpers; // TODO: optional?
+declare module "hardhat/types/network" {
+  interface NetworkConnection<ChainTypeT extends ChainType | string = DefaultChainType> {
     predeploy: NestedContainer<ethers.Contract>;
   }
 }
