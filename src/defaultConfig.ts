@@ -23,6 +23,11 @@ export const defaultConfig: PredeployUserConfig = {
     abi: path.resolve(import.meta.dirname, "../../bin/0x449ED7C3e6Fee6a97311d4b55475DF59C44AdD33.abi"),
     bytecode: path.resolve(import.meta.dirname, "../../bin/0x449ED7C3e6Fee6a97311d4b55475DF59C44AdD33.bytecode"),
   },
+  "0x000000000022D473030F116dDEE9F6B43aC78BA3": {
+    name: "permit2",
+    abi: path.resolve(import.meta.dirname, "../../bin/0x000000000022D473030F116dDEE9F6B43aC78BA3.abi"),
+    bytecode: path.resolve(import.meta.dirname, "../../bin/0x000000000022D473030F116dDEE9F6B43aC78BA3.bytecode"),
+  },
   "0x4e59b44847b379578588920cA78FbF26c0B4956C": {
     name: "deployer.arachnid",
     abi: [],
