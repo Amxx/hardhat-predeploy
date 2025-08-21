@@ -11,13 +11,13 @@ it("config is populated", async () => {
 
 it("bytecode is deployed", async () => {
   for (const [address, { bytecode }] of Object.entries(hre.config.predeploy).filter(([, details]) => details)) {
-    await expect(connection.provider.send("eth_getCode", [address])).to.eventually.equal(bytecode);
+    expect(await connection.provider.send("eth_getCode", [address])).to.equal(bytecode);
   }
 });
 
 it("disabled predeploys are not deployed", async () => {
   for (const [address] of Object.entries(hre.config.predeploy).filter(([, details]) => !details)) {
-    await expect(connection.provider.send("eth_getCode", [address])).to.eventually.equal("0x");
+    expect(await connection.provider.send("eth_getCode", [address])).to.equal("0x");
   }
 });
 
