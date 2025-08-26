@@ -1,8 +1,10 @@
 import "hardhat/types/config";
 import "hardhat/types/network";
 
-import type { ethers } from "ethers";
+import type { HardhatEthers } from '@nomicfoundation/hardhat-ethers';
+import type { HardhatViemHelpers } from '@nomicfoundation/hardhat-viem';
 import type { PredeployUserConfig, PredeployConfig, NestedContainer } from "./types.js";
+import type { ethers } from "ethers";
 
 declare module "hardhat/types/config" {
   export interface HardhatUserConfig {
@@ -16,6 +18,8 @@ declare module "hardhat/types/config" {
 
 declare module "hardhat/types/network" {
   interface NetworkConnection<ChainTypeT extends ChainType | string = DefaultChainType> {
-    predeploy: NestedContainer<ethers.Contract>;
+    ethers: HardhatEthers | undefined,
+    viem: HardhatViemHelpers<ChainTypeT> | undefined,
+    predeploy: NestedContainer<ethers.Contract | any>; // replace any with a generic viem contract type ?
   }
 }

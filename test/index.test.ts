@@ -24,6 +24,7 @@ it("disabled predeploys are not deployed", async () => {
 it("connection.predeploy is populated", () => {
   for (const [address, { name }] of Object.entries(hre.config.predeploy).filter(([, details]) => details)) {
     const contract = name.split(".").reduce((container, key) => container && container[key], connection.predeploy);
-    expect(contract?.target).to.equal(address);
+    expect(contract).to.not.equal(undefined);
+    expect(contract?.target || contract?.address).to.equal(address);
   }
 });

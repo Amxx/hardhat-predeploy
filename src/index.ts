@@ -8,7 +8,10 @@ const hardhatEthersPlugin: HardhatPlugin = {
     config: () => import("./hook-handlers/config.js"),
     network: () => import("./hook-handlers/network.js"),
   },
-  dependencies: () => [import("@nomicfoundation/hardhat-ethers")],
+  dependencies: () => [
+    // import("@nomicfoundation/hardhat-ethers"), // OPTIONAL
+    // import("@nomicfoundation/hardhat-viem"), // OPTIONAL
+  ],
   npmPackage: "hardhat-predeploy",
 };
 
