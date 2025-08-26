@@ -34,28 +34,30 @@ async function populate<ChainTypeT extends ChainType | string>(
   context: HookContext,
   connection: NetworkConnection<ChainTypeT>,
 ): Promise<void> {
-  connection.predeploy = {};
   if (connection.ethers) {
+    connection.ethers.predeploy = {};
     await Promise.all(
       Object.entries(context.config.predeploy)
         .filter(([, details]) => details)
         .map(([address, { name, abi }]) =>
-          connection.ethers!.getContractAt(abi, address).then(instance => set(connection.predeploy, name, instance)),
+          connection.ethers!.getContractAt(abi, address).then(instance => set(connection.ethers!.predeploy, name, instance)),
         ),
     );
-  } else if (connection.viem) {
+  }
+  if (connection.viem) {
+    connection.viem.predeploy = {};
     const { getContract } = await import("viem");
-
     await connection.viem.getPublicClient().then(client =>
       Promise.all(
         Object.entries(context.config.predeploy)
           .filter(([, details]) => details)
           .map(([address, { name, abi }]) =>
-            set(connection.predeploy, name, getContract({ address: address as HexString, abi, client })),
+            set(connection.viem!.predeploy, name, getContract({ address: address as HexString, abi, client })),
           ),
       )
     );
   }
+  connection.predeploy = connection.ethers?.predeploy ?? connection.viem?.predeploy;
 }
 
 export default async (): Promise<Partial<NetworkHooks>> => ({

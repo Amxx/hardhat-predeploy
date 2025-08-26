@@ -25,6 +25,22 @@ it("connection.predeploy is populated", () => {
   for (const [address, { name }] of Object.entries(hre.config.predeploy).filter(([, details]) => details)) {
     const contract = name.split(".").reduce((container, key) => container && container[key], connection.predeploy);
     expect(contract).to.not.equal(undefined);
-    expect(contract?.target || contract?.address).to.equal(address);
+    expect(contract?.target ?? contract?.address).to.equal(address);
+  }
+});
+
+it("connection.ethers.predeploy is populated", () => {
+  for (const [address, { name }] of Object.entries(hre.config.predeploy).filter(([, details]) => details)) {
+    const contract = name.split(".").reduce((container, key) => container && container[key], connection.ethers?.predeploy);
+    expect(contract).to.not.equal(undefined);
+    expect(contract?.target).to.equal(address);
+  }
+});
+
+it("connection.viem.predeploy is populated", () => {
+  for (const [address, { name }] of Object.entries(hre.config.predeploy).filter(([, details]) => details)) {
+    const contract = name.split(".").reduce((container, key) => container && container[key], connection.viem?.predeploy);
+    expect(contract).to.not.equal(undefined);
+    expect(contract?.address).to.equal(address);
   }
 });

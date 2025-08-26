@@ -18,8 +18,8 @@ declare module "hardhat/types/config" {
 
 declare module "hardhat/types/network" {
   interface NetworkConnection<ChainTypeT extends ChainType | string = DefaultChainType> {
-    ethers?: HardhatEthers,
-    viem?: HardhatViemHelpers<ChainTypeT>,
-    predeploy: NestedContainer<ethers.Contract | any>; // replace any with a generic viem contract type ?
+    ethers?: HardhatEthers & { predeploy: NestedContainer<ethers.Contract> },
+    viem?: HardhatViemHelpers<ChainTypeT> & { predeploy: NestedContainer<any> }, // replace any with a generic viem contract type ?
+    predeploy?: NestedContainer<ethers.Contract> | NestedContainer<any>,
   }
 }
