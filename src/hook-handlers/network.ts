@@ -40,7 +40,9 @@ async function populate<ChainTypeT extends ChainType | string>(
       Object.entries(context.config.predeploy)
         .filter(([, details]) => details)
         .map(([address, { name, abi }]) =>
-          connection.ethers!.getContractAt(abi, address).then(instance => set(connection.ethers!.predeploy, name, instance)),
+          connection
+            .ethers!.getContractAt(abi, address)
+            .then(instance => set(connection.ethers!.predeploy, name, instance)),
         ),
     );
   }
@@ -54,7 +56,7 @@ async function populate<ChainTypeT extends ChainType | string>(
           .map(([address, { name, abi }]) =>
             set(connection.viem!.predeploy, name, getContract({ address: address as HexString, abi, client })),
           ),
-      )
+      ),
     );
   }
   connection.predeploy = connection.ethers?.predeploy ?? connection.viem?.predeploy;
