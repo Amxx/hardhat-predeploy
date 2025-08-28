@@ -9,8 +9,10 @@ const hardhatEthersPlugin: HardhatPlugin = {
     network: () => import("./hook-handlers/network.js"),
   },
   dependencies: () => [
-    import("@nomicfoundation/hardhat-ethers"), // Optional dependency: add .catch(() => undefined)
-    import("@nomicfoundation/hardhat-viem"), // Optional dependency: add .catch(() => undefined)
+    // Optional dependencies. We should use .catch(() => undefined) when https://github.com/NomicFoundation/hardhat/pull/7323
+    // (or similar) is part of hardhat.
+    import("@nomicfoundation/hardhat-ethers").catch(() => ({ default: { id: '@nomicfoundation/hardhat-ethers/not-found' }})),
+    import("@nomicfoundation/hardhat-viem").catch(() => ({ default: { id: '@nomicfoundation/hardhat-viem/not-found' }})),
   ],
   npmPackage: "hardhat-predeploy",
 };
