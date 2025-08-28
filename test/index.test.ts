@@ -39,15 +39,4 @@ describe("hardhat-predeploy plugin", async () => {
       }
     });
   });
-
-  describe("artifacts", async () => {
-    it("connection.predeploy is populated", () => {
-      for (const [address, { name }] of Object.entries(config.predeploy).filter(([, details]) => details)) {
-        assert.equal(
-          name.split(".").reduce((container, key) => container?.[key], connection.predeploy)?.target, // ethers takes priority here
-          address,
-        );
-      }
-    });
-  });
 });

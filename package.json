@@ -20,7 +20,7 @@
     "build": "tsc --project tsconfig.json",
     "lint": "prettier --log-level warn --ignore-path .gitignore '**/*.{js,ts}' --check",
     "lint:fix": "prettier --log-level warn --ignore-path .gitignore '**/*.{js,ts}' --write",
-    "test": "node --import tsx/esm --test \"test/*.ts\""
+    "test": "node --import tsx/esm --test \"test/**/*.test.ts\""
   },
   "devDependencies": {
     "@nomicfoundation/hardhat-ethers": "^4.0.0",
