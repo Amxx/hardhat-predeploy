@@ -9,8 +9,8 @@ const hardhatEthersPlugin: HardhatPlugin = {
     network: () => import("./hook-handlers/network.js"),
   },
   dependencies: () => [
-    // import("@nomicfoundation/hardhat-ethers"), // Now do we deal with optional dependencies?
-    // import("@nomicfoundation/hardhat-viem"), // Now do we deal with optional dependencies?
+    import("@nomicfoundation/hardhat-ethers"), // Optional dependency: add .catch(() => undefined)
+    import("@nomicfoundation/hardhat-viem"), // Optional dependency: add .catch(() => undefined)
   ],
   npmPackage: "hardhat-predeploy",
 };
