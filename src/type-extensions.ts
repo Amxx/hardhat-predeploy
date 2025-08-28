@@ -1,8 +1,6 @@
 import "hardhat/types/config";
 import "hardhat/types/network";
 
-import type { HardhatEthers } from "@nomicfoundation/hardhat-ethers/types";
-import type { HardhatViemHelpers } from "@nomicfoundation/hardhat-viem/types";
 import type { PredeployUserConfig, PredeployConfig, NestedContainer } from "./types.js";
 import type { ethers } from "ethers";
 
