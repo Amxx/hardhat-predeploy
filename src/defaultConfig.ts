@@ -28,6 +28,11 @@ export const defaultConfig: PredeployUserConfig = {
     abi: path.resolve(import.meta.dirname, "../../bin/0x000000000022D473030F116dDEE9F6B43aC78BA3.abi"),
     bytecode: path.resolve(import.meta.dirname, "../../bin/0x000000000022D473030F116dDEE9F6B43aC78BA3.bytecode"),
   },
+  "0xba5Ed099633D3B313e4D5F7bdc1305d3c28ba5Ed": {
+    name: "createx",
+    abi: path.resolve(import.meta.dirname, "../../bin/0xba5Ed099633D3B313e4D5F7bdc1305d3c28ba5Ed.abi"),
+    bytecode: path.resolve(import.meta.dirname, "../../bin/0xba5Ed099633D3B313e4D5F7bdc1305d3c28ba5Ed.bytecode"),
+  },
   "0x4e59b44847b379578588920cA78FbF26c0B4956C": {
     name: "deployer.arachnid",
     abi: [],

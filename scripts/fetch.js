@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 
-const fs = require("fs");
-const path = require("path");
-const yargs = require("yargs/yargs");
-const { hideBin } = require("yargs/helpers");
+import fs from "fs";
+import path from "path";
+import yargs from "yargs/yargs";
+import { hideBin } from "yargs/helpers";
 
 const {
   argv: { addresses, chainid, target },
