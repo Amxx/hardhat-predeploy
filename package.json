@@ -20,11 +20,10 @@
     "build": "tsc --project tsconfig.json",
     "lint": "prettier --log-level warn --ignore-path .gitignore '**/*.{js,ts}' --check",
     "lint:fix": "prettier --log-level warn --ignore-path .gitignore '**/*.{js,ts}' --write",
-    "test": "hardhat test"
+    "test": "node --import tsx/esm --test \"test/*.ts\""
   },
   "devDependencies": {
     "@nomicfoundation/hardhat-ethers": "^4.0.0",
-    "@nomicfoundation/hardhat-mocha": "^3.0.0",
     "@nomicfoundation/hardhat-viem": "^3.0.0",
     "@types/chai": "^5.2.2",
     "@types/mocha": "^10.0.10",
@@ -38,6 +37,7 @@
     "rimraf": "^6.0.1",
     "ts-node": "^10.9.2",
     "typescript": "^5.7.3",
+    "viem": "^2.36.0",
     "yargs": "^18.0.0"
   },
   "peerDependencies": {

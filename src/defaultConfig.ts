@@ -1,37 +1,38 @@
-import path from "path";
-
 import type { PredeployUserConfig } from "./types.js";
+
+import { fileURLToPath } from "url";
+const resolve = (path: string) => fileURLToPath(import.meta.resolve(path));
 
 export const defaultConfig: PredeployUserConfig = {
   "0x0000000071727De22E5E9d8BAf0edAc6f37da032": {
     name: "entrypoint.v07",
-    abi: path.resolve(import.meta.dirname, "../../bin/0x0000000071727De22E5E9d8BAf0edAc6f37da032.abi"),
-    bytecode: path.resolve(import.meta.dirname, "../../bin/0x0000000071727De22E5E9d8BAf0edAc6f37da032.bytecode"),
+    abi: resolve("hardhat-predeploy/bin/0x0000000071727De22E5E9d8BAf0edAc6f37da032.abi"),
+    bytecode: resolve("hardhat-predeploy/bin/0x0000000071727De22E5E9d8BAf0edAc6f37da032.bytecode"),
   },
   "0xEFC2c1444eBCC4Db75e7613d20C6a62fF67A167C": {
     name: "senderCreator.v07",
-    abi: path.resolve(import.meta.dirname, "../../bin/0x0000000071727De22E5E9d8BAf0edAc6f37da032.abi"),
-    bytecode: path.resolve(import.meta.dirname, "../../bin/0x0000000071727De22E5E9d8BAf0edAc6f37da032.bytecode"),
+    abi: resolve("hardhat-predeploy/bin/0x0000000071727De22E5E9d8BAf0edAc6f37da032.abi"),
+    bytecode: resolve("hardhat-predeploy/bin/0x0000000071727De22E5E9d8BAf0edAc6f37da032.bytecode"),
   },
   "0x4337084D9E255Ff0702461CF8895CE9E3b5Ff108": {
     name: "entrypoint.v08",
-    abi: path.resolve(import.meta.dirname, "../../bin/0x4337084D9E255Ff0702461CF8895CE9E3b5Ff108.abi"),
-    bytecode: path.resolve(import.meta.dirname, "../../bin/0x4337084D9E255Ff0702461CF8895CE9E3b5Ff108.bytecode"),
+    abi: resolve("hardhat-predeploy/bin/0x4337084D9E255Ff0702461CF8895CE9E3b5Ff108.abi"),
+    bytecode: resolve("hardhat-predeploy/bin/0x4337084D9E255Ff0702461CF8895CE9E3b5Ff108.bytecode"),
   },
   "0x449ED7C3e6Fee6a97311d4b55475DF59C44AdD33": {
     name: "senderCreator.v08",
-    abi: path.resolve(import.meta.dirname, "../../bin/0x449ED7C3e6Fee6a97311d4b55475DF59C44AdD33.abi"),
-    bytecode: path.resolve(import.meta.dirname, "../../bin/0x449ED7C3e6Fee6a97311d4b55475DF59C44AdD33.bytecode"),
+    abi: resolve("hardhat-predeploy/bin/0x449ED7C3e6Fee6a97311d4b55475DF59C44AdD33.abi"),
+    bytecode: resolve("hardhat-predeploy/bin/0x449ED7C3e6Fee6a97311d4b55475DF59C44AdD33.bytecode"),
   },
   "0x000000000022D473030F116dDEE9F6B43aC78BA3": {
     name: "permit2",
-    abi: path.resolve(import.meta.dirname, "../../bin/0x000000000022D473030F116dDEE9F6B43aC78BA3.abi"),
-    bytecode: path.resolve(import.meta.dirname, "../../bin/0x000000000022D473030F116dDEE9F6B43aC78BA3.bytecode"),
+    abi: resolve("hardhat-predeploy/bin/0x000000000022D473030F116dDEE9F6B43aC78BA3.abi"),
+    bytecode: resolve("hardhat-predeploy/bin/0x000000000022D473030F116dDEE9F6B43aC78BA3.bytecode"),
   },
   "0xba5Ed099633D3B313e4D5F7bdc1305d3c28ba5Ed": {
     name: "createx",
-    abi: path.resolve(import.meta.dirname, "../../bin/0xba5Ed099633D3B313e4D5F7bdc1305d3c28ba5Ed.abi"),
-    bytecode: path.resolve(import.meta.dirname, "../../bin/0xba5Ed099633D3B313e4D5F7bdc1305d3c28ba5Ed.bytecode"),
+    abi: resolve("hardhat-predeploy/bin/0xba5Ed099633D3B313e4D5F7bdc1305d3c28ba5Ed.abi"),
+    bytecode: resolve("hardhat-predeploy/bin/0xba5Ed099633D3B313e4D5F7bdc1305d3c28ba5Ed.bytecode"),
   },
   "0x4e59b44847b379578588920cA78FbF26c0B4956C": {
     name: "deployer.arachnid",
