@@ -2,23 +2,44 @@ import type { HardhatPlugin } from "hardhat/types/plugins";
 
 import "./type-extensions";
 
-const hardhatEthersPlugin: HardhatPlugin = {
-  id: "hardhat-predeploy",
+const hardhatPredeployCore: HardhatPlugin = {
+  id: "hardhat-predeploy-core",
   hookHandlers: {
     config: () => import("./hook-handlers/config.js"),
-    network: () => import("./hook-handlers/network.js"),
+    network: () => import("./hook-handlers/network-deploy.js"),
   },
+};
+
+const hardhatPredeployEthers: HardhatPlugin = {
+  id: "hardhat-predeploy-ethers",
+  hookHandlers: {
+    network: () => import("./hook-handlers/network-populate-ethers.js"),
+  },
+  dependencies: () => [Promise.resolve({ default: hardhatPredeployCore }), import("@nomicfoundation/hardhat-ethers")],
+};
+
+const hardhatPredeployViem: HardhatPlugin = {
+  id: "hardhat-predeploy-viem",
+  hookHandlers: {
+    network: () => import("./hook-handlers/network-populate-viem.js"),
+  },
+  dependencies: () => [Promise.resolve({ default: hardhatPredeployCore }), import("@nomicfoundation/hardhat-viem")],
+};
+
+const hardhatPredeployPlugin: HardhatPlugin = {
+  id: "hardhat-predeploy",
   dependencies: () => [
-    // Optional dependencies. We should use .catch(() => undefined) when https://github.com/NomicFoundation/hardhat/pull/7323
-    // (or similar) is part of hardhat.
-    import("@nomicfoundation/hardhat-ethers").catch(() => ({
-      default: { id: "@nomicfoundation/hardhat-ethers/not-found" },
-    })),
-    import("@nomicfoundation/hardhat-viem").catch(() => ({
-      default: { id: "@nomicfoundation/hardhat-viem/not-found" },
-    })),
+    Promise.resolve({ default: hardhatPredeployCore }),
+    import("@nomicfoundation/hardhat-viem").then(
+      () => ({ default: hardhatPredeployViem }),
+      () => ({ default: { id: "@nomicfoundation/hardhat-viem/not-found" } }),
+    ),
+    import("@nomicfoundation/hardhat-ethers").then(
+      () => ({ default: hardhatPredeployEthers }),
+      () => ({ default: { id: "@nomicfoundation/hardhat-ethers/not-found" } }),
+    ),
   ],
   npmPackage: "hardhat-predeploy",
 };
 
-export default hardhatEthersPlugin;
+export default hardhatPredeployPlugin;

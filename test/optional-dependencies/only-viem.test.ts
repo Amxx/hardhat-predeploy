@@ -4,10 +4,10 @@ import { describe, it } from "node:test";
 import { createHardhatRuntimeEnvironment } from "hardhat/hre";
 import hardhatPredeployPlugin from "../../src/index.js";
 
-import disableDependencies from '../helpers/missing-loader.js';
+import disableDependencies from "../helpers/missing-loader.js";
 
 describe("optional dependencies: only hardhat-viem is available", async () => {
-  disableDependencies('@nomicfoundation/hardhat-ethers');
+  disableDependencies("@nomicfoundation/hardhat-ethers");
 
   const { config, network } = await createHardhatRuntimeEnvironment({ plugins: [hardhatPredeployPlugin] });
   const connection = await network.connect();
@@ -17,7 +17,7 @@ describe("optional dependencies: only hardhat-viem is available", async () => {
     assert.notEqual(connection.viem, undefined);
   });
 
-  it('connection.predeploy is populated', () => {
+  it("connection.predeploy is populated", () => {
     for (const [address, { name }] of Object.entries(config.predeploy).filter(([, details]) => details)) {
       assert.equal(
         name.split(".").reduce((container, key) => container?.[key], connection.predeploy)?.address,
