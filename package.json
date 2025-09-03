@@ -31,7 +31,6 @@
     "chai": "^5.2.1",
     "ethers": "^6.13.5",
     "hardhat": "^3.0.0",
-    "hardhat-predeploy": "file:.",
     "mocha": "^11.1.0",
     "prettier": "^3.5.2",
     "rimraf": "^6.0.1",

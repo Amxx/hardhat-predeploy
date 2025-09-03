@@ -15,7 +15,7 @@ export default async (): Promise<Partial<NetworkHooks>> => ({
       Object.entries(context.config.predeploy)
         .filter(([, details]) => details)
         .map(([address, { name, abi }]) =>
-          connection.ethers!.getContractAt(abi, address).then(instance => set(connection.predeploy!, name, instance)),
+          connection.ethers.getContractAt(abi, address).then(instance => set(connection.predeploy!, name, instance)),
         ),
     );
 
