@@ -11,13 +11,13 @@ export default async (): Promise<Partial<NetworkHooks>> => ({
   ): Promise<NetworkConnection<ChainTypeT>> => {
     const connection: NetworkConnection<ChainTypeT> = await next(context);
 
-    connection.predeploy = {};
+    connection.viem.predeploy = {};
     await connection.viem.getPublicClient().then(client =>
       Promise.all(
         Object.entries(context.config.predeploy)
           .filter(([, details]) => details)
           .map(([address, { name, abi }]) =>
-            set(connection.predeploy!, name, getContract({ address: address as HexString, abi, client })),
+            set(connection.viem.predeploy, name, getContract({ address: address as HexString, abi, client })),
           ),
       ),
     );

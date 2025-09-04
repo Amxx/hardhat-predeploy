@@ -9,18 +9,6 @@ const hardhatPredeployPlugin: HardhatPlugin = {
     network: () => import("./hook-handlers/network-deploy.js"),
   },
   dependencies: () => [
-    import("@nomicfoundation/hardhat-viem").then(
-      hardhatViem => ({
-        default: {
-          id: "hardhat-predeploy-viem",
-          hookHandlers: {
-            network: () => import("./hook-handlers/network-populate-viem.js"),
-          },
-          dependencies: () => [Promise.resolve(hardhatViem)],
-        },
-      }),
-      () => ({ default: { id: "@nomicfoundation/hardhat-viem/not-found" } }),
-    ),
     import("@nomicfoundation/hardhat-ethers").then(
       hardhatEthers => ({
         default: {
@@ -32,6 +20,18 @@ const hardhatPredeployPlugin: HardhatPlugin = {
         },
       }),
       () => ({ default: { id: "@nomicfoundation/hardhat-ethers/not-found" } }),
+    ),
+    import("@nomicfoundation/hardhat-viem").then(
+      hardhatViem => ({
+        default: {
+          id: "hardhat-predeploy-viem",
+          hookHandlers: {
+            network: () => import("./hook-handlers/network-populate-viem.js"),
+          },
+          dependencies: () => [Promise.resolve(hardhatViem)],
+        },
+      }),
+      () => ({ default: { id: "@nomicfoundation/hardhat-viem/not-found" } }),
     ),
   ],
   npmPackage: "hardhat-predeploy",

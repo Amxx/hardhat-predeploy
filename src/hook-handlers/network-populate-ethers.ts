@@ -10,12 +10,12 @@ export default async (): Promise<Partial<NetworkHooks>> => ({
   ): Promise<NetworkConnection<ChainTypeT>> => {
     const connection: NetworkConnection<ChainTypeT> = await next(context);
 
-    connection.predeploy = {};
+    connection.ethers.predeploy = {};
     await Promise.all(
       Object.entries(context.config.predeploy)
         .filter(([, details]) => details)
         .map(([address, { name, abi }]) =>
-          connection.ethers.getContractAt(abi, address).then(instance => set(connection.predeploy!, name, instance)),
+          connection.ethers.getContractAt(abi, address).then(instance => set(connection.ethers.predeploy, name, instance)),
         ),
     );
 

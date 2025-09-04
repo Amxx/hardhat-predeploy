@@ -17,9 +17,16 @@ describe("optional dependencies: only hardhat-ethers is available", async () => 
     assert.equal(connection.viem, undefined);
   });
 
-  it("connection.predeploy is populated", () => {
+  it("connection.ethers.predeploy is populated", () => {
     for (const [address, { name }] of Object.entries(config.predeploy).filter(([, details]) => details)) {
-      assert.equal(name.split(".").reduce((container, key) => container?.[key], connection.predeploy)?.target, address);
+      assert.equal(
+        name.split(".").reduce((container, key) => container?.[key], connection.ethers.predeploy)?.target,
+        address,
+      );
     }
+  });
+
+  it("connection.viem.predeploy is undefined", () => {
+    assert.equal(connection.viem, undefined);
   });
 });

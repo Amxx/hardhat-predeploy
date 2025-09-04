@@ -17,10 +17,14 @@ describe("optional dependencies: only hardhat-viem is available", async () => {
     assert.notEqual(connection.viem, undefined);
   });
 
-  it("connection.predeploy is populated", () => {
+  it("connection.ethers.predeploy is undefined", () => {
+    assert.equal(connection.ethers, undefined);
+  });
+
+  it("connection.viem.predeploy is populated", () => {
     for (const [address, { name }] of Object.entries(config.predeploy).filter(([, details]) => details)) {
       assert.equal(
-        name.split(".").reduce((container, key) => container?.[key], connection.predeploy)?.address,
+        name.split(".").reduce((container, key) => container?.[key], connection.viem.predeploy)?.address,
         address,
       );
     }

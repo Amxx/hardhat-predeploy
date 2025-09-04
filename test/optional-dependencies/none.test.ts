@@ -17,7 +17,11 @@ describe("optional dependencies: no optional dependency is available", async () 
     assert.equal(connection.viem, undefined);
   });
 
-  it("connection.predeploy is undefined", () => {
-    assert.equal(connection.predeploy, undefined);
+  it("connection.ethers.predeploy is undefined", () => {
+    assert.equal(connection.ethers, undefined);
+  });
+
+  it("connection.viem.predeploy is undefined", () => {
+    assert.equal(connection.viem, undefined);
   });
 });
