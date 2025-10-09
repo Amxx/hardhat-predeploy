@@ -7,7 +7,7 @@ import type { NestedContainer } from "../src/types.js";
 import { createHardhatRuntimeEnvironment } from "hardhat/hre";
 import hardhatEthersPlugin from "@nomicfoundation/hardhat-ethers";
 import hardhatViemPlugin from "@nomicfoundation/hardhat-viem";
-import hardhatPredeployPlugin from "hardhat-predeploy";
+import hardhatPredeployPlugin from "../dist/esm/plugins/hardhat-predeploy.js";
 
 describe("optional dependencies", async () => {
   for (const { name, installEthers, installViem } of [
