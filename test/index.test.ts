@@ -1,29 +1,42 @@
-import hre from "hardhat";
-import { expect } from "chai";
+import assert from "node:assert/strict";
+import { describe, it } from "node:test";
 
-import "../src/type-extensions";
+import { createHardhatRuntimeEnvironment } from "hardhat/hre";
+import hardhatPredeployPlugin from "hardhat-predeploy";
 
-const connection = await hre.network.connect();
+describe("hardhat-predeploy plugin", async () => {
+  const { config, network } = await createHardhatRuntimeEnvironment({ plugins: [hardhatPredeployPlugin] });
+  const connection = await network.connect();
 
-it("config is populated", async () => {
-  expect(hre.config.predeploy).to.not.equal(undefined);
-});
+  describe("config", () => {
+    it("config.predeploy is populated", async () => {
+      assert.notEqual(config.predeploy, undefined);
+    });
+  });
 
-it("bytecode is deployed", async () => {
-  for (const [address, { bytecode }] of Object.entries(hre.config.predeploy).filter(([, details]) => details)) {
-    await expect(connection.provider.send("eth_getCode", [address])).to.eventually.equal(bytecode);
-  }
-});
+  describe("network", () => {
+    it("predeploy's bytecode is deployed", async () => {
+      for (const [address, { bytecode }] of Object.entries(config.predeploy).filter(([, details]) => details)) {
+        assert.equal(
+          await connection.provider.request({
+            method: "eth_getCode",
+            params: [address],
+          }),
+          bytecode,
+        );
+      }
+    });
 
-it("disabled predeploys are not deployed", async () => {
-  for (const [address] of Object.entries(hre.config.predeploy).filter(([, details]) => !details)) {
-    await expect(connection.provider.send("eth_getCode", [address])).to.eventually.equal("0x");
-  }
-});
-
-it("connection.predeploy is populated", () => {
-  for (const [address, { name }] of Object.entries(hre.config.predeploy).filter(([, details]) => details)) {
-    const contract = name.split(".").reduce((container, key) => container && container[key], connection.predeploy);
-    expect(contract?.target).to.equal(address);
-  }
+    it("disabled predeploys are not deployed", async () => {
+      for (const [address] of Object.entries(config.predeploy).filter(([, details]) => !details)) {
+        assert.equal(
+          await connection.provider.request({
+            method: "eth_getCode",
+            params: [address],
+          }),
+          "0x",
+        );
+      }
+    });
+  });
 });

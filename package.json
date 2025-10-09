@@ -6,9 +6,9 @@
   "author": "Hadrien Croubois <hadrien.croubois@gmail.com>",
   "repository": "github:amxx/hardhat-predeploy",
   "type": "module",
-  "main": "dist/esm/index.js",
-  "module": "./dist/esm/index.js",
-  "types": "./dist/esm/index.d.ts",
+  "main": "dist/esm/plugins/hardhat-predeploy.js",
+  "module": "./dist/esm/plugins/hardhat-predeploy.js",
+  "types": "./dist/esm/plugins/hardhat-predeploy.d.ts",
   "files": [
     "/bin",
     "/dist",
@@ -20,29 +20,27 @@
     "build": "tsc --project tsconfig.json",
     "lint": "prettier --log-level warn --ignore-path .gitignore '**/*.{js,ts}' --check",
     "lint:fix": "prettier --log-level warn --ignore-path .gitignore '**/*.{js,ts}' --write",
-    "test": "hardhat test"
+    "test": "node --import tsx/esm --test \"test/**/*.test.ts\""
   },
   "devDependencies": {
     "@nomicfoundation/hardhat-ethers": "^4.0.0",
-    "@nomicfoundation/hardhat-ethers-chai-matchers": "^3.0.0",
-    "@nomicfoundation/hardhat-mocha": "^3.0.0",
-    "@nomicfoundation/hardhat-network-helpers": "^3.0.0",
+    "@nomicfoundation/hardhat-viem": "^3.0.0",
     "@types/chai": "^5.2.2",
     "@types/mocha": "^10.0.10",
     "@types/node": "^22.13.5",
     "chai": "^5.2.1",
     "ethers": "^6.13.5",
-    "hardhat": "^3.0.0",
+    "hardhat": "^3.0.7",
     "hardhat-predeploy": "file:.",
     "mocha": "^11.1.0",
     "prettier": "^3.5.2",
     "rimraf": "^6.0.1",
     "ts-node": "^10.9.2",
     "typescript": "^5.7.3",
+    "viem": "^2.36.0",
     "yargs": "^18.0.0"
   },
   "peerDependencies": {
-    "@nomicfoundation/hardhat-ethers": "^4.0.0",
     "hardhat": "^3.0.0"
   }
 }
