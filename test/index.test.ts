@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import { describe, it } from "node:test";
 
 import { createHardhatRuntimeEnvironment } from "hardhat/hre";
-import hardhatPredeployPlugin from "../dist/esm/plugins/hardhat-predeploy.js";
+import hardhatPredeployPlugin from "../src/plugins/hardhat-predeploy.js";
 
 describe("hardhat-predeploy plugin", async () => {
   const { config, network } = await createHardhatRuntimeEnvironment({ plugins: [hardhatPredeployPlugin] });

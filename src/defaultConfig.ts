@@ -1,38 +1,42 @@
 import type { PredeployUserConfig } from "./types.js";
 
-import { fileURLToPath } from "url";
-const resolve = (path: string) => fileURLToPath(import.meta.resolve(path));
+import path from "path";
+
+const resolveBin = (file: string) =>
+  import.meta.filename.endsWith(".ts")
+    ? path.resolve(import.meta.dirname, "..", "bin", file)
+    : path.resolve(import.meta.dirname, "..", "..", "bin", file);
 
 export const defaultConfig: PredeployUserConfig = {
   "0x0000000071727De22E5E9d8BAf0edAc6f37da032": {
     name: "entrypoint.v07",
-    abi: resolve("../../bin/0x0000000071727De22E5E9d8BAf0edAc6f37da032.abi"),
-    bytecode: resolve("../../bin/0x0000000071727De22E5E9d8BAf0edAc6f37da032.bytecode"),
+    abi: resolveBin("0x0000000071727De22E5E9d8BAf0edAc6f37da032.abi"),
+    bytecode: resolveBin("0x0000000071727De22E5E9d8BAf0edAc6f37da032.bytecode"),
   },
   "0xEFC2c1444eBCC4Db75e7613d20C6a62fF67A167C": {
     name: "senderCreator.v07",
-    abi: resolve("../../bin/0x0000000071727De22E5E9d8BAf0edAc6f37da032.abi"),
-    bytecode: resolve("../../bin/0x0000000071727De22E5E9d8BAf0edAc6f37da032.bytecode"),
+    abi: resolveBin("0x0000000071727De22E5E9d8BAf0edAc6f37da032.abi"),
+    bytecode: resolveBin("0x0000000071727De22E5E9d8BAf0edAc6f37da032.bytecode"),
   },
   "0x4337084D9E255Ff0702461CF8895CE9E3b5Ff108": {
     name: "entrypoint.v08",
-    abi: resolve("../../bin/0x4337084D9E255Ff0702461CF8895CE9E3b5Ff108.abi"),
-    bytecode: resolve("../../bin/0x4337084D9E255Ff0702461CF8895CE9E3b5Ff108.bytecode"),
+    abi: resolveBin("0x4337084D9E255Ff0702461CF8895CE9E3b5Ff108.abi"),
+    bytecode: resolveBin("0x4337084D9E255Ff0702461CF8895CE9E3b5Ff108.bytecode"),
   },
   "0x449ED7C3e6Fee6a97311d4b55475DF59C44AdD33": {
     name: "senderCreator.v08",
-    abi: resolve("../../bin/0x449ED7C3e6Fee6a97311d4b55475DF59C44AdD33.abi"),
-    bytecode: resolve("../../bin/0x449ED7C3e6Fee6a97311d4b55475DF59C44AdD33.bytecode"),
+    abi: resolveBin("0x449ED7C3e6Fee6a97311d4b55475DF59C44AdD33.abi"),
+    bytecode: resolveBin("0x449ED7C3e6Fee6a97311d4b55475DF59C44AdD33.bytecode"),
   },
   "0x000000000022D473030F116dDEE9F6B43aC78BA3": {
     name: "permit2",
-    abi: resolve("../../bin/0x000000000022D473030F116dDEE9F6B43aC78BA3.abi"),
-    bytecode: resolve("../../bin/0x000000000022D473030F116dDEE9F6B43aC78BA3.bytecode"),
+    abi: resolveBin("0x000000000022D473030F116dDEE9F6B43aC78BA3.abi"),
+    bytecode: resolveBin("0x000000000022D473030F116dDEE9F6B43aC78BA3.bytecode"),
   },
   "0xba5Ed099633D3B313e4D5F7bdc1305d3c28ba5Ed": {
     name: "createx",
-    abi: resolve("../../bin/0xba5Ed099633D3B313e4D5F7bdc1305d3c28ba5Ed.abi"),
-    bytecode: resolve("../../bin/0xba5Ed099633D3B313e4D5F7bdc1305d3c28ba5Ed.bytecode"),
+    abi: resolveBin("0xba5Ed099633D3B313e4D5F7bdc1305d3c28ba5Ed.abi"),
+    bytecode: resolveBin("0xba5Ed099633D3B313e4D5F7bdc1305d3c28ba5Ed.bytecode"),
   },
   "0x4e59b44847b379578588920cA78FbF26c0B4956C": {
     name: "deployer.arachnid",
