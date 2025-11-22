@@ -1,6 +1,6 @@
 {
   "name": "hardhat-predeploy",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Automatically deploy common smart contracts",
   "license": "MIT",
   "author": "Hadrien Croubois <hadrien.croubois@gmail.com>",
