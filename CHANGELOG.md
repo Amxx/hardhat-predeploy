@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.4.1
+
+- Fix `entrypoint.v09` and `senderCreator.v09` bytecodes
+
 ## 0.4.0
 
 - Add `entrypoint.v09` at `0x433709009B8330FDa32311DF1C2AFA402eD8D009`
