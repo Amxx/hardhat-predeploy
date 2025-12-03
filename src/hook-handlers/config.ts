@@ -30,7 +30,7 @@ export default async (): Promise<Partial<ConfigHooks>> => ({
           address as HexString,
           details
             ? {
-                name: details.name,
+                names: Array.isArray(details.name) ? details.name : [details.name],
                 abi: Array.isArray(details.abi)
                   ? details.abi
                   : (JSON.parse(fs.readFileSync(details.abi, "utf-8")) as any[]),

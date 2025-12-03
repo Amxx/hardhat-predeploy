@@ -11,7 +11,7 @@ export function isHexString(arg: any): arg is HexString {
 export interface PredeployUserConfig {
   [key: HexString]:
     | {
-        name: string;
+        name: string | string[];
         abi: any[] | Path;
         bytecode: HexString | Path;
       }
@@ -20,7 +20,7 @@ export interface PredeployUserConfig {
 export interface PredeployConfig {
   [key: HexString]:
     | {
-        name: string;
+        names: string[];
         abi: any[];
         bytecode: HexString;
       }

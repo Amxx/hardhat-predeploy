@@ -33,16 +33,18 @@ describe("optional dependencies", async () => {
 
       it(`connection.ethers.predeploy is ${installEthers ? "populated" : "undefined"}`, () => {
         if (installEthers) {
-          for (const [address, { name }] of Object.entries(config.predeploy).filter(([, details]) => details)) {
-            assert.equal(
-              name
-                .split(".")
-                .reduce(
-                  (container: NestedContainer<Contract>, key: string) => container?.[key],
-                  connection.ethers.predeploy,
-                )?.target,
-              address,
-            );
+          for (const [address, { names }] of Object.entries(config.predeploy).filter(([, details]) => details)) {
+            for (const name of names) {
+              assert.equal(
+                name
+                  .split(".")
+                  .reduce(
+                    (container: NestedContainer<Contract>, key: string) => container?.[key],
+                    connection.ethers.predeploy,
+                  )?.target,
+                address,
+              );
+            }
           }
         } else {
           assert.equal(connection.ethers, undefined);
@@ -51,14 +53,16 @@ describe("optional dependencies", async () => {
 
       it(`connection.viem.predeploy is ${installEthers ? "populated" : "undefined"}`, () => {
         if (installViem) {
-          for (const [address, { name }] of Object.entries(config.predeploy).filter(([, details]) => details)) {
-            assert.equal(
-              name
-                .split(".")
-                .reduce((container: NestedContainer<any>, key: string) => container?.[key], connection.viem.predeploy)
-                ?.address,
-              address,
-            );
+          for (const [address, { names }] of Object.entries(config.predeploy).filter(([, details]) => details)) {
+            for (const name of names) {
+              assert.equal(
+                name
+                  .split(".")
+                  .reduce((container: NestedContainer<any>, key: string) => container?.[key], connection.viem.predeploy)
+                  ?.address,
+                address,
+              );
+            }
           }
         } else {
           assert.equal(connection.viem, undefined);

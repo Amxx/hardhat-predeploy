@@ -28,6 +28,16 @@ export const defaultConfig: PredeployUserConfig = {
     abi: resolveBin("0x449ED7C3e6Fee6a97311d4b55475DF59C44AdD33.abi"),
     bytecode: resolveBin("0x449ED7C3e6Fee6a97311d4b55475DF59C44AdD33.bytecode"),
   },
+  "0x433709009B8330FDa32311DF1C2AFA402eD8D009": {
+    name: [ "entrypoint.v09", "entrypoint.latest" ],
+    abi: resolveBin("0x433709009B8330FDa32311DF1C2AFA402eD8D009.abi"),
+    bytecode: resolveBin("0x433709009B8330FDa32311DF1C2AFA402eD8D009.bytecode"),
+  },
+  "0x0A630a99Df908A81115A3022927Be82f9299987e": {
+    name: [ "senderCreator.v09", "senderCreator.latest" ],
+    abi: resolveBin("0x0A630a99Df908A81115A3022927Be82f9299987e.abi"),
+    bytecode: resolveBin("0x0A630a99Df908A81115A3022927Be82f9299987e.bytecode"),
+  },
   "0x000000000022D473030F116dDEE9F6B43aC78BA3": {
     name: "permit2",
     abi: resolveBin("0x000000000022D473030F116dDEE9F6B43aC78BA3.abi"),

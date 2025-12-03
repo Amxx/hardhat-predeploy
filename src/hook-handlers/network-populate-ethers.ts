@@ -14,10 +14,10 @@ export default async (): Promise<Partial<NetworkHooks>> => ({
     await Promise.all(
       Object.entries(context.config.predeploy)
         .filter(([, details]) => details)
-        .map(([address, { name, abi }]) =>
+        .map(([address, { names, abi }]) =>
           connection.ethers
             .getContractAt(abi, address)
-            .then(instance => set(connection.ethers.predeploy, name, instance)),
+            .then(instance => names.forEach((name: string) => set(connection.ethers.predeploy, name, instance))),
         ),
     );
 

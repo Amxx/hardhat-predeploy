@@ -16,8 +16,8 @@ export default async (): Promise<Partial<NetworkHooks>> => ({
       Promise.all(
         Object.entries(context.config.predeploy)
           .filter(([, details]) => details)
-          .map(([address, { name, abi }]) =>
-            set(connection.viem.predeploy, name, getContract({ address: address as HexString, abi, client })),
+          .map(([address, { names, abi }]) =>
+            names.forEach((name: string) => set(connection.viem.predeploy, name, getContract({ address: address as HexString, abi, client }))),
           ),
       ),
     );
