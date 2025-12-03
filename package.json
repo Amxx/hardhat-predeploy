@@ -16,7 +16,7 @@
   ],
   "scripts": {
     "clean": "rimraf dist",
-    "prepare": "pnpm clean && pnpm build",
+    "prepare": "npm run clean && npm run build",
     "build": "tsc --project tsconfig.json",
     "lint": "prettier --log-level warn --ignore-path .gitignore '**/*.{js,ts}' --check",
     "lint:fix": "prettier --log-level warn --ignore-path .gitignore '**/*.{js,ts}' --write",
