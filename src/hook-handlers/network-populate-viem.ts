@@ -14,11 +14,20 @@ export default async (): Promise<Partial<NetworkHooks>> => ({
     connection.viem.predeploy = {};
     await connection.viem.getPublicClient().then(client =>
       Promise.all(
-        Object.entries(context.config.predeploy)
-          .filter(([, details]) => details)
-          .map(([address, { name, abi }]) =>
-            set(connection.viem.predeploy, name, getContract({ address: address as HexString, abi, client })),
-          ),
+        Object.entries(context.config.predeploy.alias).map(
+          ([name, address]) =>
+            address !== false &&
+            context.config.predeploy.artifacts[address] !== false &&
+            set(
+              connection.viem.predeploy,
+              name,
+              getContract({
+                address: address as HexString,
+                abi: context.config.predeploy.artifacts[address].abi,
+                client,
+              }),
+            ),
+        ),
       ),
     );
 

@@ -33,7 +33,7 @@ describe("optional dependencies", async () => {
 
       it(`connection.ethers.predeploy is ${installEthers ? "populated" : "undefined"}`, () => {
         if (installEthers) {
-          for (const [address, { name }] of Object.entries(config.predeploy).filter(([, details]) => details)) {
+          for (const [name, address] of Object.entries(config.predeploy.alias).filter(([, address]) => address)) {
             assert.equal(
               name
                 .split(".")
@@ -51,7 +51,7 @@ describe("optional dependencies", async () => {
 
       it(`connection.viem.predeploy is ${installEthers ? "populated" : "undefined"}`, () => {
         if (installViem) {
-          for (const [address, { name }] of Object.entries(config.predeploy).filter(([, details]) => details)) {
+          for (const [name, address] of Object.entries(config.predeploy.alias).filter(([, address]) => address)) {
             assert.equal(
               name
                 .split(".")

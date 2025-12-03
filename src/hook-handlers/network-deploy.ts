@@ -21,14 +21,14 @@ export default async (): Promise<Partial<NetworkHooks>> => ({
         isDevelopmentNetwork =>
           isDevelopmentNetwork &&
           Promise.all(
-            Object.entries(context.config.predeploy)
-              .filter(([, details]) => details)
-              .map(([address, { bytecode }]) =>
+            Object.entries(context.config.predeploy.artifacts).map(
+              ([address, details]) =>
+                details !== false &&
                 connection.provider.request({
                   method: "hardhat_setCode",
-                  params: [address, bytecode],
+                  params: [address, details.bytecode],
                 }),
-              ),
+            ),
           ),
       );
 
