@@ -9,22 +9,30 @@ export function isHexString(arg: any): arg is HexString {
 }
 
 export interface PredeployUserConfig {
-  [key: HexString]:
-    | {
-        name: string;
-        abi: any[] | Path;
-        bytecode: HexString | Path;
-      }
-    | false;
+  alias: {
+    [key: string]: HexString | false;
+  };
+  artifacts: {
+    [key: HexString]:
+      | {
+          abi: any[] | Path;
+          bytecode: HexString | Path;
+        }
+      | false;
+  };
 }
 export interface PredeployConfig {
-  [key: HexString]:
-    | {
-        name: string;
-        abi: any[];
-        bytecode: HexString;
-      }
-    | false;
+  alias: {
+    [key: string]: HexString | false;
+  };
+  artifacts: {
+    [key: HexString]:
+      | {
+          abi: any[];
+          bytecode: HexString;
+        }
+      | false;
+  };
 }
 
 export type NestedContainer<T> = { [key: string]: T | NestedContainer<T> };

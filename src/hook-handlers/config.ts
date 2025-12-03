@@ -12,7 +12,10 @@ export default async (): Promise<Partial<ConfigHooks>> => ({
     next: (nextConfig: HardhatUserConfig) => Promise<HardhatUserConfig>,
   ): Promise<HardhatUserConfig> =>
     next(userConfig).then((extendedUserConfig: HardhatUserConfig) => {
-      extendedUserConfig.predeploy = { ...defaultConfig, ...extendedUserConfig.predeploy };
+      extendedUserConfig.predeploy = {
+        alias: { ...defaultConfig.alias, ...extendedUserConfig.predeploy?.alias },
+        artifacts: { ...defaultConfig.artifacts, ...extendedUserConfig.predeploy?.artifacts },
+      };
       return extendedUserConfig;
     }),
 
@@ -25,22 +28,24 @@ export default async (): Promise<Partial<ConfigHooks>> => ({
     ) => Promise<HardhatConfig>,
   ): Promise<HardhatConfig> =>
     next(userConfig, resolveConfigurationVariable).then((resolvedConfig: HardhatConfig) => {
-      resolvedConfig.predeploy = Object.fromEntries(
-        Object.entries(userConfig.predeploy ?? {}).map(([address, details]) => [
-          address as HexString,
-          details
-            ? {
-                name: details.name,
-                abi: Array.isArray(details.abi)
-                  ? details.abi
-                  : (JSON.parse(fs.readFileSync(details.abi, "utf-8")) as any[]),
-                bytecode: isHexString(details.bytecode)
-                  ? details.bytecode
-                  : (`0x${fs.readFileSync(details.bytecode, "hex").replace(/0x/, "")}` as HexString),
-              }
-            : (false as false),
-        ]),
-      );
+      resolvedConfig.predeploy = {
+        alias: userConfig.predeploy?.alias ?? {},
+        artifacts: Object.fromEntries(
+          Object.entries(userConfig.predeploy?.artifacts ?? {}).map(([address, details]) => [
+            address as HexString,
+            details
+              ? {
+                  abi: Array.isArray(details.abi)
+                    ? details.abi
+                    : (JSON.parse(fs.readFileSync(details.abi, "utf-8")) as any[]),
+                  bytecode: isHexString(details.bytecode)
+                    ? details.bytecode
+                    : (`0x${fs.readFileSync(details.bytecode, "hex").replace(/0x/, "")}` as HexString),
+                }
+              : (false as false),
+          ]),
+        ),
+      };
       return resolvedConfig;
     }),
 });

@@ -16,7 +16,9 @@ describe("hardhat-predeploy plugin", async () => {
 
   describe("network", () => {
     it("predeploy's bytecode is deployed", async () => {
-      for (const [address, { bytecode }] of Object.entries(config.predeploy).filter(([, details]) => details)) {
+      for (const [address, { bytecode }] of Object.entries(config.predeploy.artifacts).filter(
+        ([, details]) => details,
+      )) {
         assert.equal(
           await connection.provider.request({
             method: "eth_getCode",
@@ -28,7 +30,7 @@ describe("hardhat-predeploy plugin", async () => {
     });
 
     it("disabled predeploys are not deployed", async () => {
-      for (const [address] of Object.entries(config.predeploy).filter(([, details]) => !details)) {
+      for (const [address] of Object.entries(config.predeploy.artifacts).filter(([, details]) => !details)) {
         assert.equal(
           await connection.provider.request({
             method: "eth_getCode",
