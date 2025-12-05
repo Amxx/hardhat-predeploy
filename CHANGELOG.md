@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased 
+## 1.0.0
 
 - Migrate plugin to hardhat v3
 - Add bindings to both ethers and viem using an (optional) dependency on the hardhat-ethers and hardhat-viem plugins
