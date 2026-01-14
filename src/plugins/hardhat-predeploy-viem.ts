@@ -1,6 +1,5 @@
 import type { HardhatPlugin } from "hardhat/types/plugins";
-
-import "../type-extensions.js";
+import type {} from '../type-extensions.ts';
 
 const hardhatPredeployViemPlugin: HardhatPlugin = {
   id: "hardhat-predeploy-viem",
