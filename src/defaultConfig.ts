@@ -29,8 +29,8 @@ export const defaultConfig: PredeployUserConfig = {
       bytecode: resolveBin("0x0000000071727De22E5E9d8BAf0edAc6f37da032.bytecode"),
     },
     "0xEFC2c1444eBCC4Db75e7613d20C6a62fF67A167C": {
-      abi: resolveBin("0x0000000071727De22E5E9d8BAf0edAc6f37da032.abi"),
-      bytecode: resolveBin("0x0000000071727De22E5E9d8BAf0edAc6f37da032.bytecode"),
+      abi: resolveBin("0xEFC2c1444eBCC4Db75e7613d20C6a62fF67A167C.abi"),
+      bytecode: resolveBin("0xEFC2c1444eBCC4Db75e7613d20C6a62fF67A167C.bytecode"),
     },
     "0x4337084D9E255Ff0702461CF8895CE9E3b5Ff108": {
       abi: resolveBin("0x4337084D9E255Ff0702461CF8895CE9E3b5Ff108.abi"),
