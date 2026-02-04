@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.1
+
+- Fix typo in defaultConfig
+
 ## 1.0.0
 
 - Migrate plugin to hardhat v3
